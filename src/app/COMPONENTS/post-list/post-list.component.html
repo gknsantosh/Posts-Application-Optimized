@@ -1,0 +1,31 @@
+<app-search-post (searchTextChanged)="FilterPosts($event)"></app-search-post>
+<div class="card-body">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>
+          <input class="checkbox" type="checkbox" [(ngModel)]="isAllSelected" (change)="SelectListAllChanged()">
+        </th>
+        <th>User ID</th>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Body</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let post of filteredPosts">
+        <td>
+          <input class="checkbox" type="checkbox" [checked]="post.isSelected" [(ngModel)]="post.isSelected" (change)="SelectListChanged(post)">
+        </td>
+        <td>{{post.userId | Fibonacci}}</td>
+        <td>{{post.id }}</td>
+        <td>{{post.title | titlecase }}</td>
+        <td>{{post.body | titlecase }}</td>
+        <td>
+          <button class="btn-outline-primary btn btn-xs" (click)="DeletePost(post.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
